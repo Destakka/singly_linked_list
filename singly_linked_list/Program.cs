@@ -79,5 +79,31 @@ namespace singly_linked_list
 
             }
         }
+        public bool delNode(int nim)
+        {
+            node previous, current;
+            previous = current = null;
+            //check if the spesified node is present in the list or not 
+            if (Search(nim, ref previous, ref current) == false)
+                return false;
+            previous.next = current.next;
+            if (current == START)
+                START = START.next;
+            return true;
+        }
+        public bool Search(int rollNo, ref node previous, ref node current)
+        {
+            previous = START;
+            current = START;
+            while ((current != null) && (rollNo != current.rollNumber))
+            {
+                previous = current;
+                current = current.next;
+            }
+            if (current == null)
+                return false;
+            else
+                return true;
+        }
     }
 }
