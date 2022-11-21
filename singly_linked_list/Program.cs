@@ -43,6 +43,41 @@ namespace singly_linked_list
                 START = newnode;
                 return;
             }
+            // locate the position of the new node in the list 
+            node previous, current;
+            previous = START;
+            current = START;
+
+            while ((current != null) && (nim >= current.rollNumber))
+            {
+                if (nim == current.rollNumber)
+                {
+                    Console.WriteLine("\nDuplicate roll numbers not allowed\n");
+                    return;
+                }
+                previous = current;
+                current = current.next;
+            }
+            //*once the above for loop is executed, prev and current are positioned in such a Imanner that the position for the new node */ 
+            newnode.next = current;
+            previous.next = newnode;
+        }
+        public void traverse()
+        {
+            if (listEmpty())
+                Console.WriteLine("\nlist is empt.\n");
+            else
+            {
+                Console.WriteLine("\nThe records in teh list are: ");
+                node currentnode;
+                for (currentnode = START; currentnode != null;
+                    currentnode = currentnode.next)
+
+                    Console.Write(currentnode.rollNumber + "" + currentnode.name + "\n");
+
+                Console.WriteLine();
+
+            }
         }
     }
 }
